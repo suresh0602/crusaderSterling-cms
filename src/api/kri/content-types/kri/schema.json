@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "kris",
+  "info": {
+    "singularName": "kri",
+    "pluralName": "kris",
+    "displayName": "KRI",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string"
+    },
+    "trend": {
+      "type": "enumeration",
+      "enum": [
+        "up",
+        "down",
+        "neutral"
+      ]
+    },
+    "trendValue": {
+      "type": "string"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "healthy",
+        "warning",
+        "critical"
+      ]
+    },
+    "department": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::department.department"
+    }
+  }
+}

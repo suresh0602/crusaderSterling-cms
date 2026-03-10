@@ -319,7 +319,7 @@ module.exports = {
             );
             if (!validPassword) throw new ValidationError("Invalid credentials");
 
-            return ctx.send({ success: true, message: "Login successful" });
+            return ctx.send({ success: true, message: "Login successful", email: user.email });
         } catch (error) {
             console.error("An error occurred (login):", error?.message || error);
             ctx.badRequest(error.message);

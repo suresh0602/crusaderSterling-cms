@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "agenda_items",
+  "info": {
+    "singularName": "agenda-item",
+    "pluralName": "agenda-items",
+    "displayName": "Agenda Item",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "time": {
+      "type": "time"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Upcoming",
+        "In Progress",
+        "Completed"
+      ],
+      "default": "Upcoming"
+    }
+  }
+}

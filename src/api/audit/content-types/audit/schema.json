@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "audits",
+  "info": {
+    "singularName": "audit",
+    "pluralName": "audits",
+    "displayName": "Audit",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "date"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Closed",
+        "Ongoing"
+      ]
+    },
+    "score": {
+      "type": "integer"
+    },
+    "controlName": {
+      "type": "string"
+    },
+    "framework": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "string"
+    },
+    "testResult": {
+      "type": "string"
+    }
+  }
+}

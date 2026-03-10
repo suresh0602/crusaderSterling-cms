@@ -1,0 +1,74 @@
+{
+  "kind": "collectionType",
+  "collectionName": "risks",
+  "info": {
+    "singularName": "risk",
+    "pluralName": "risks",
+    "displayName": "Risk",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "riskId": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "department": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::department.department",
+      "inversedBy": "risks"
+    },
+    "probability": {
+      "type": "integer",
+      "min": 1,
+      "max": 5
+    },
+    "impact": {
+      "type": "integer",
+      "min": 1,
+      "max": 5
+    },
+    "score": {
+      "type": "integer"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "financial",
+        "operational",
+        "strategic",
+        "compliance"
+      ]
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Submitted",
+        "Under Review",
+        "Approved",
+        "Returned"
+      ],
+      "default": "Submitted"
+    },
+    "reporter": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "date": {
+      "type": "date"
+    }
+  }
+}

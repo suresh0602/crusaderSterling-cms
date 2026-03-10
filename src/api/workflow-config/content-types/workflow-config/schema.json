@@ -1,0 +1,39 @@
+{
+    "kind": "collectionType",
+    "collectionName": "workflow_configs",
+    "info": {
+        "singularName": "workflow-config",
+        "pluralName": "workflow-configs",
+        "displayName": "WorkflowConfig"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "module": {
+            "type": "enumeration",
+            "enum": [
+                "Risk Submission",
+                "Incident Escalation",
+                "KRI Breach",
+                "Action Item"
+            ],
+            "required": true
+        },
+        "step": {
+            "type": "integer",
+            "required": true
+        },
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "condition": {
+            "type": "string"
+        },
+        "notifyRoles": {
+            "type": "json"
+        }
+    }
+}

@@ -1,0 +1,124 @@
+{
+  "kind": "collectionType",
+  "collectionName": "incidents",
+  "info": {
+    "singularName": "incident",
+    "pluralName": "incidents",
+    "displayName": "Incident",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "incidentId": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Operational Error",
+        "System Failure",
+        "Security Breach",
+        "Compliance Violation"
+      ]
+    },
+    "severityCategory": {
+      "type": "enumeration",
+      "enum": [
+        "Minor",
+        "Moderate",
+        "Major",
+        "Critical"
+      ]
+    },
+    "date": {
+      "type": "date"
+    },
+    "time": {
+      "type": "time"
+    },
+    "departmentAffected": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::department.department"
+    },
+    "otherAffectedDepartment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::department.department"
+    },
+    "location": {
+      "type": "string"
+    },
+    "resolutionDate": {
+      "type": "date"
+    },
+    "actionProposed": {
+      "type": "text"
+    },
+    "probability": {
+      "type": "integer",
+      "min": 1,
+      "max": 5
+    },
+    "impact": {
+      "type": "integer",
+      "min": 1,
+      "max": 5
+    },
+    "severityScore": {
+      "type": "integer"
+    },
+    "rsaAccountsAffected": {
+      "type": "integer"
+    },
+    "financialImpact": {
+      "type": "decimal"
+    },
+    "isPencomReportable": {
+      "type": "boolean"
+    },
+    "rootCauseAnalysis": {
+      "type": "text"
+    },
+    "preventionMeasures": {
+      "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Submitted",
+        "Under Review",
+        "Closed",
+        "Returned"
+      ],
+      "default": "Submitted"
+    },
+    "reporter": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "supportingDocumentation": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    }
+  }
+}

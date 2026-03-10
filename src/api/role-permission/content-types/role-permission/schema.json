@@ -1,0 +1,43 @@
+{
+    "kind": "collectionType",
+    "collectionName": "role_permissions",
+    "info": {
+        "singularName": "role-permission",
+        "pluralName": "role-permissions",
+        "displayName": "RolePermission"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "moduleName": {
+            "type": "string",
+            "required": true
+        },
+        "action": {
+            "type": "enumeration",
+            "enum": [
+                "View",
+                "Create",
+                "Edit",
+                "Approve",
+                "Delete"
+            ],
+            "required": true
+        },
+        "role": {
+            "type": "enumeration",
+            "enum": [
+                "STAFF",
+                "HOD",
+                "ADMIN"
+            ],
+            "required": true
+        },
+        "isAllowed": {
+            "type": "boolean",
+            "default": false
+        }
+    }
+}

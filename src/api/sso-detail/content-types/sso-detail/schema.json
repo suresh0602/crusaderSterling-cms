@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sso_details",
+  "info": {
+    "singularName": "sso-detail",
+    "pluralName": "sso-details",
+    "displayName": "SSO Detail",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user_id": {
+      "type": "string"
+    },
+    "login_information": {
+      "type": "json"
+    }
+  }
+}
