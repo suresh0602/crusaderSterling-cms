@@ -1,0 +1,12 @@
+.tmp/
+.strapi/
+.cache/
+build/
+node_modules/
+.env
+.DS_Store
+*.log
+docker-compose.yml
+Dockerfile
+.git
+.gitignore

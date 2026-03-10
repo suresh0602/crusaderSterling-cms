@@ -308,6 +308,7 @@ module.exports = {
 
             const user = await strapi.query("plugin::users-permissions.user").findOne({
                 where: { $or: [{ email: identifier }, { username: identifier }] },
+                populate: ['role']
             });
 
             if (!user) throw new ValidationError("Invalid credentials");
@@ -318,6 +319,22 @@ module.exports = {
                 user.password
             );
             if (!validPassword) throw new ValidationError("Invalid credentials");
+
+            // Bypass OTP for Admins
+            if (user.role && (user.role.name === 'Admin' || user.role.type === 'admin')) {
+                const jwt = strapi.service("plugin::users-permissions.jwt").issue({ id: user.id });
+                return ctx.send({
+                    success: true,
+                    message: "Login successful",
+                    jwt,
+                    user: {
+                        id: user.id,
+                        email: user.email,
+                        username: user.username,
+                        role: user.role.name
+                    }
+                });
+            }
 
             return ctx.send({ success: true, message: "Login successful", email: user.email });
         } catch (error) {
