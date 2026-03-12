@@ -17,6 +17,25 @@ module.exports = {
    * run jobs, or perform some special logic.
    */
   async bootstrap({ strapi }) {
+    // Initialize Socket.io
+    const { Server } = require('socket.io');
+    const io = new Server(strapi.server.httpServer, {
+      cors: {
+        origin: '*', // Adjust to your frontend URL in production
+        methods: ['GET', 'POST'],
+      },
+    });
+
+    strapi.io = io;
+
+    io.on('connection', (socket) => {
+      console.log('A user connected:', socket.id);
+      
+      socket.on('disconnect', () => {
+        console.log('User disconnected:', socket.id);
+      });
+    });
+
     // Seed Departments
     const departments = [
       'Risk Management',

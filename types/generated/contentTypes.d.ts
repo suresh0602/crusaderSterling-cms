@@ -630,6 +630,44 @@ export interface ApiKriKri extends Schema.CollectionType {
   };
 }
 
+export interface ApiNotificationNotification extends Schema.CollectionType {
+  collectionName: 'notifications';
+  info: {
+    description: 'System alerts and notifications for users';
+    displayName: 'Notification';
+    pluralName: 'notifications';
+    singularName: 'notification';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::notification.notification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    isRead: Attribute.Boolean & Attribute.DefaultTo<false>;
+    link: Attribute.String;
+    message: Attribute.Text;
+    title: Attribute.String & Attribute.Required;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::notification.notification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    user: Attribute.Relation<
+      'api::notification.notification',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiRiskRisk extends Schema.CollectionType {
   collectionName: 'risks';
   info: {
@@ -1194,6 +1232,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    notifications: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::notification.notification'
+    >;
     otp: Attribute.String & Attribute.Private;
     otp_expiry: Attribute.DateTime & Attribute.Private;
     password: Attribute.Password &
@@ -1241,6 +1284,7 @@ declare module '@strapi/types' {
       'api::department.department': ApiDepartmentDepartment;
       'api::incident.incident': ApiIncidentIncident;
       'api::kri.kri': ApiKriKri;
+      'api::notification.notification': ApiNotificationNotification;
       'api::risk.risk': ApiRiskRisk;
       'api::role-permission.role-permission': ApiRolePermissionRolePermission;
       'api::sso-detail.sso-detail': ApiSsoDetailSsoDetail;

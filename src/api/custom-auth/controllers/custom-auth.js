@@ -114,7 +114,9 @@ module.exports = {
                 console.error("Failed to store SSO details:", ssoError.message);
             }
 
-            const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+            const envFrontendUrl = process.env.FRONTEND_URL || 'localhost:3000';
+            const frontendUrl = envFrontendUrl.startsWith('http') ? envFrontendUrl : `http://${envFrontendUrl}`;
+            
             const redirectBase = destination_uri || `${frontendUrl}/dashboard`;
             const separator = redirectBase.includes('?') ? '&' : '?';
             const redirectWithToken = `${redirectBase}${separator}token=${jwt}`;
